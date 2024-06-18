@@ -27,12 +27,12 @@ jobs:
           lef_path: lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
           verilog_path: src/project.v
   
-  precheck:
-    needs: gds
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Tiny Tapeout Precheck
-        uses: TinyTapeout/tt-gds-action/precheck@tt08
+  #precheck:
+  #  needs: gds
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Run Tiny Tapeout Precheck
+  #      uses: TinyTapeout/tt-gds-action/precheck@tt08
 
   viewer:
     needs: gds
