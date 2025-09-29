@@ -20,8 +20,9 @@ jobs:
           cmd: echo TOP_MODULE=`yq '.project.top_module' info.yaml` > $GITHUB_OUTPUT
 
       - name: Create and publish the GDS artifact
-        uses: TinyTapeout/tt-gds-action/custom_gds@tt08
+        uses: TinyTapeout/tt-gds-action/custom_gds@gf180mcu
         with:
+          pdk: sky130A
           top_module: ${{ steps.top_module.outputs.TOP_MODULE }}
           gds_path: gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
           lef_path: lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
@@ -32,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Tiny Tapeout Precheck
-        uses: TinyTapeout/tt-gds-action/precheck@tt08
+        uses: TinyTapeout/tt-gds-action/precheck@gf180mcu
 
   viewer:
     needs: gds
@@ -41,4 +42,4 @@ jobs:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
     steps:
-      - uses: TinyTapeout/tt-gds-action/viewer@tt08
+      - uses: TinyTapeout/tt-gds-action/viewer@gf180mcu
